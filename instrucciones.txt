@@ -1,0 +1,2 @@
+se necesita crear manualmente la columna "deleted_at" en la tabla "movies" en mysql.
+Cambiar en config donde dice "movies_db" a como se llame el schema de su db.
