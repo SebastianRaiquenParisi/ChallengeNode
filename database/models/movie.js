@@ -36,8 +36,9 @@ module.exports = (sequelize, DataTypes) => {
     modelName: 'Movie',
     createdAt:"created_at",
     updatedAt:"updated_at",
-    timestamps:true//,
-    //paranoid:true
+    timestamps:true,
+    deletedAt: 'deleted_at',
+    paranoid:true
   });
   return Movie;
 };
