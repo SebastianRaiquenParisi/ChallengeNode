@@ -10,22 +10,25 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      product_size.belongsTo(models.Actor, {
+      actor_movie.belongsTo(models.Actor, {
         foreignKey:"actor_id"
     });
-      product_size.belongsTo(models.Movie, {
+      actor_movie.belongsTo(models.Movie, {
         foreignKey:"movie_id"
     });
     }
   };
   actor_movie.init({
-    created_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE,
     actor_id: DataTypes.INTEGER,
     movie_id: DataTypes.INTEGER
   }, {
     sequelize,
+    tableName:"actor_movie",
     modelName: 'actor_movie',
+    createdAt:"created_at",
+    updatedAt:"updated_at",
+    timestamps:true//,
+    //paranoid:true
   });
   return actor_movie;
 };

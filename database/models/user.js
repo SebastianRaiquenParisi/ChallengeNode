@@ -18,12 +18,14 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     remember_token: DataTypes.STRING,
-    created_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE,
     rol: DataTypes.TINYINT
   }, {
     sequelize,
     modelName: 'User',
+    createdAt:"created_at",
+    updatedAt:"updated_at",
+    timestamps:true//,
+    //paranoid:true
   });
   return User;
 };

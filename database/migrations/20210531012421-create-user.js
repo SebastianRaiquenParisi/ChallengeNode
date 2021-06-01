@@ -20,12 +20,6 @@ module.exports = {
       remember_token: {
         type: Sequelize.STRING
       },
-      created_at: {
-        type: Sequelize.DATE
-      },
-      updated_at: {
-        type: Sequelize.DATE
-      },
       rol: {
         type: Sequelize.TINYINT
       },

@@ -10,12 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Actor.belongsToMany(models.Movie,{
+        through:"actor_movie",
+        as:"movies",
+        foreignKey:"actor_id"
+      })
     }
   };
   Actor.init({
-    created_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE,
     first_name: DataTypes.STRING,
     last_name: DataTypes.STRING,
     rating: DataTypes.FLOAT,
@@ -23,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Actor',
+    createdAt:"created_at",
+    updatedAt:"updated_at",
+    timestamps:true//,
+    //paranoid:true
   });
   return Actor;
 };

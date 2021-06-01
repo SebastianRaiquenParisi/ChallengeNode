@@ -10,12 +10,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Movie.belongsTo(models.Genre,{
+        as:"genres",
+        foreignKey:"genre_id"
+      })
+      Movie.hasOne(models.Actor,{
+        foreignKey:"favorite_movie_id"
+      })
+      Movie.belongsToMany(models.Actor,{
+        through:"actor_movie",
+        as:"actors",
+        foreignKey:"movie_id"
+      })
     }
   };
   Movie.init({
-    created_at: DataTypes.DATE,
-    updated_at: DataTypes.DATE,
     title: DataTypes.STRING,
     rating: DataTypes.FLOAT,
     awards: DataTypes.INTEGER,
@@ -24,8 +33,11 @@ module.exports = (sequelize, DataTypes) => {
     genre_id: DataTypes.INTEGER
   }, {
     sequelize,
-    tableName:"movies",
     modelName: 'Movie',
+    createdAt:"created_at",
+    updatedAt:"updated_at",
+    timestamps:true//,
+    //paranoid:true
   });
   return Movie;
 };
