@@ -1,0 +1,24 @@
+<html>
+    <body>
+            <section>
+                <article>
+                    <h2> <%=movieFound.title %> </h2>
+                
+                    <h3>rating: <%=movieFound.rating %> </h3>
+                    <h5>premios: <%=movieFound.awards %></h5>
+                    <h5>genero: <%=movieFound.genres.name%></h5>
+                    <h5>actuan en esta pelicula:</h5>
+                    <% for(let i= 0; i < actors.length;i++) {%>
+                       
+                            <h5><%=actors[i].first_name %> <%=actors[i].last_name %>, rating: <%=actors[i].rating %>.
+                            <% if(actors[i].fav_movie){ %>
+                            Su pelicula favorita es <%=movies[actors[i].fav_movie].title%>.</h5>
+                            <% } %>
+            
+                    <% } %>
+                </br>
+                </article>
+            </section>
+    </body>
+
+</html>
