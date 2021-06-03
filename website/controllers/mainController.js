@@ -1,5 +1,10 @@
 const db = require("../database/models");
 let Movies = db.Movie;
+let Genres = db.Genre;
+let Users = db.User;
+let Actors = db.Actor;
+let Actor_movies = db.Actor_movie;
+const {validationResult} = require("express-validator")
 
 const mainController = {
     index: async function(req, res){
@@ -8,6 +13,7 @@ const mainController = {
             return res.render("./index", {movies})
         }catch(error){
             console.log(error);
+            return res.render("./error404");
         }
     },
     detail:async function (req, res){ 
@@ -20,8 +26,48 @@ const mainController = {
                 return res.render("./detail", {movieFound:movieFound, actors:movieFound.actors, movies:movies});
             }catch (error){
                 console.log(error);
+                return res.render("./error404");
             }	
-    }
+    },
+    create:async (req,res)=>{
+		try{
+			let actors = await Actors.findAll();
+			let genres= await Genres.findAll();
+			return res.render("./create",{actors,genres});
+		}catch (error){
+			console.log(error);																			
+			return res.render("./error404");
+		}
+    },
+    /*storage: async function (req,res){
+		try{  									
+			let errors = validationResult(req);				 
+          	if(!errors.isEmpty()){							
+				let actors = await Actors.findAll();
+			    let genres= await Genres.findAll();
+				return res.render("./create", {
+					actors,
+					genres,
+                	errors: errors.mapped(),
+                	oldData: req.body 		
+            	});
+			}
+			
+			let newMovie = await Movies.create({
+				...req.body
+			},{
+				include: ["actors, genre"]
+			});
+			await Product_sizes.bulkCreate(
+				Array.from(req.body.size).map(
+				(size,index)=>new Object({size_id:size,product_id:newproduct.id, quantity:req.body.quantity[index]})
+				));
+			return res.redirect("/"); 
+		}catch (error){
+			console.log(error);
+			return res.render("./products/error404");
+		}
+    }, */
 
 
     

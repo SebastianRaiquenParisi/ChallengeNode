@@ -4,7 +4,9 @@ const app = express();
 const db = require("./database/models");
 const session = require("express-session");
 
-//convertir el metodo put a un get ? no obvio que no : dale bro
+app.use(methodOverride('_method'));
+
+
 app.use(express.urlencoded({extended:false}))
 app.use(express.json());
 
