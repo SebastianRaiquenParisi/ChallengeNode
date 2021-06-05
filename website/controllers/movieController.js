@@ -1,7 +1,6 @@
 const db = require("../database/models");
 let Movies = db.Movie;
 let Genres = db.Genre;
-let Users = db.User;
 let Actors = db.Actor;
 let Actor_movies = db.Actor_movie;
 const {validationResult} = require("express-validator")
@@ -31,7 +30,7 @@ const movieController = {
             return res.render("./error404");
         }
     },
-    /*storage: async function (req,res){
+    storage: async function (req,res){
         try{  									
             let errors = validationResult(req);				 
             if(!errors.isEmpty()){							
@@ -50,7 +49,7 @@ const movieController = {
             },{
                 include: ["actors, genre"]
             });
-            await Product_sizes.bulkCreate(
+            await Actor_movies.bulkCreate(
                 Array.from(req.body.size).map(
                 (size,index)=>new Object({size_id:size,product_id:newproduct.id, quantity:req.body.quantity[index]})
                 ));
@@ -59,7 +58,7 @@ const movieController = {
             console.log(error);
             return res.render("./products/error404");
         }
-    }, */
+    }, 
 
 }
 module.exports=movieController;
