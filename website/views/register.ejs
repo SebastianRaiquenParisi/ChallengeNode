@@ -5,15 +5,27 @@
        <title>Register</title>
     </head> 
     <body>
+        <a href="/">INDEX</a>
+        <br/>
+        <label>Registrate!</label>
         <form action="/users/register" method="POST">
             <label>Nombre:</label>
-            <input type="text" name="name" placeholder="Introduzca su nombre">
+            <input type="text" name="name" placeholder="Introduzca su nombre" value="<%=locals.oldData && oldData.name %>">
+            <% if(locals.errors && errors.name){ %>
+                <h5><%=errors.name.msg %></h5>
+            <% } %>
             <label>Email:</label>
-            <input type="email" name="email" placeholder="Introduzca su e-mail">
+            <input type="email" name="email" placeholder="Introduzca su e-mail" value="<%=locals.oldData && oldData.email %>">
+            <% if(locals.errors && errors.email){ %>
+                <h5><%=errors.email.msg %></h5>
+            <% } %>
             <label>Contraseña:</label>
-            <input type="password" name="password">
-            <label>Confirme su contraseña:</label>
-            <input type="password" name="password2">
+            <input type="password" name="password" value="<%=locals.oldData && oldData.password %>">
+            <% if(locals.errors && errors.password){ %>
+                <h5><%=errors.password.msg %></h5>
+            <% } %>
+
+            <button type="submit"> Registrarse  </button>
         </form>
     </body>
 </html>

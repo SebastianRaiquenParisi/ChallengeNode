@@ -56,7 +56,7 @@ const movieController = {
             return res.redirect("/"); 
         }catch (error){
             console.log(error);
-            return res.render("./products/error404");
+            return res.render("./error404");
         }
     }, 
 

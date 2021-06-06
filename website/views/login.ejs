@@ -4,11 +4,21 @@
        <title>Login</title>
     </head> 
     <body>
+        <a href="/">INDEX</a>
+        <br/>
+        <label>Login!</label>
         <form action="/users/login" method="POST">
             <label>Email:</label>
-            <input type="email" name="email" placeholder="Introduzca su e-mail">
+            <input type="email" name="email" placeholder="Introduzca su e-mail" value="<%=locals.oldData && oldData.email %>">
+            <% if(locals.errors && errors.email){ %>
+                <h5><%=errors.email.msg %></h5>
+            <% } %>
             <label>Contraseña:</label>
-            <input type="password" name="password">
+            <input type="password" name="password" value="<%=locals.oldData && oldData.password %>">
+            <% if(locals.errors && errors.password){ %>
+                <h5><%=errors.password.msg %></h5>
+            <% } %>
+            <button type="submit"> Loguearse </button>
         </form>
     </body>
 </html>

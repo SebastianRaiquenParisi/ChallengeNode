@@ -3,11 +3,14 @@ const path = require("path");
 const app = express();
 const db = require("./database/models");
 const methodOverride = require("method-override")
+const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware");
 const session = require("express-session");
+const cookies= require("cookie-parser");
 
 app.use(methodOverride('_method'));
-
-  
+app.use(session({secret:"responsabilidad", resave:false, saveUninitialized:false}));
+app.use(cookies());
+app.use(userLoggedMiddleware);
 app.use(express.urlencoded({extended:false}))
 app.use(express.json());
 

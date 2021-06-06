@@ -1,9 +1,9 @@
-function adminMiddleware(req,res,next){
+function userAdminMiddleware(req,res,next){
     if(!req.session.userLogged){
-        return res.redirect("/");
+        return res.redirect("/users/login");
     }else if(req.session.userLogged.rol == 0){
         return res.redirect("/");
     }
     next();
 }
-module.exports=adminMiddleware;
+module.exports=userAdminMiddleware;
