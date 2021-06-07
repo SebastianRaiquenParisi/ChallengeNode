@@ -1,0 +1,8 @@
+<header>
+    <% if(locals.userLogged){ %>
+        <a href="/users/logout">Log out</a>
+    <% }else{ %>
+        <a href="/users/login">Logueate!</a>
+        <a href="/users/register">Registrate!</a>
+    <% } %>
+</header>

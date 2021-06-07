@@ -10,5 +10,7 @@ router.post("/login", validateLogin, userController.processLogin);
 
 router.get("/register", userLoggedNowMiddleware, userController.register);
 router.post("/register", validateRegister, userController.processRegister);
+
 router.get("/logout", userController.logout);
+
 module.exports = router;

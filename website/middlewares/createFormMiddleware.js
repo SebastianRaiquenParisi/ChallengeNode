@@ -11,9 +11,9 @@ module.exports=[
 
     check("release_date").notEmpty().withMessage("La pelicula debe tener una fecha de lanzamiento"),
 
-    check("genre_id").notEmpty.withMessage("La pelicula debe tener un genero"),
+    check("genre_id").notEmpty().withMessage("La pelicula debe tener un genero"),
 
-    check("actors_id").notEmpty.withMessage("La pelicula debe contener por lo menos un actor o actriz"),
+    check("actors_id").notEmpty().withMessage("La pelicula debe contener por lo menos un actor o actriz"),
 
 
 ]

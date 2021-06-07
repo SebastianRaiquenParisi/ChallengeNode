@@ -1,6 +1,12 @@
 <html>
+    <%- include('./partials/header'); %>
     <body>
-
+        <% if(locals.userLogged && userLogged.rol != 0){ %>
+            <div>
+                
+            </div>
+            <br/>
+        <% } %>
         <% for(let i= 0; i < movies.length;i++) {%>
             <section>
                 <a href="/movies/<%=movies[i].id %>">

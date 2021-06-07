@@ -1,16 +1,18 @@
+const {validationResult} = require ("express-validator");
+const bcryptjs = require("bcryptjs");
 const db = require("../database/models");
 const Users = db.User;
 
 const userController = {
     login: (req,res)=>{
-    return res.render("./user/login")
+    return res.render("./login")
     },
 
     processLogin:  async function (req,res) {
         try{
             let errors = validationResult(req);
             if(!errors.isEmpty()){             
-            return res.render("./user/login", {
+            return res.render("./login", {
                     errors: errors.mapped(),
                     oldData: req.body
                 });
@@ -31,7 +33,7 @@ const userController = {
                 if(req.body.user_remember){                       
                     res.cookie("userEmail", req.body.email, {maxAge: (1000* 60)*4})
                 }
-                return res.redirect("/users/profile");
+                return res.redirect("/");
             }
             return res.render("./login", {
                 errors:{
