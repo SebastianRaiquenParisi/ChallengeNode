@@ -43,22 +43,48 @@ const movieController = {
                     oldData: req.body 		
                 });
             }
-            
             let newMovie = await Movies.create({
-                ...req.body
+                ...req.body,
+                genres:req.body.genre_id,
+                actors:req.body.actors_id
             },{
-                include: ["actors, genre"]
+                include: ["actors", "genres"]
             });
-            await Actor_movies.bulkCreate(
-                Array.from(req.body.size).map(
-                (size,index)=>new Object({size_id:size,product_id:newproduct.id, quantity:req.body.quantity[index]})
-                ));
             return res.redirect("/"); 
         }catch (error){
             console.log(error);
             return res.render("./error404");
         }
     }, 
+    delete:async function (req,res){
+		try{
+			await Movies.destroy({
+				where:{
+					id: req.params.id	
+				}					    
+			});
+			return res.redirect("/");
+		}catch (error){
+			console.log(error);
+			return res.render("./error404");
+		}
+	},
+    update:async function(req,res){
+        try{
+
+        }catch(error){
+            console.log(error);
+            return res.render("./error404");
+        }
+    },
+    processUpdate:async function(req,res){
+        try{
+
+        }catch(error){
+            console.log(error);
+            return res.render("./error404");
+        }
+    }
 
 }
 module.exports=movieController;

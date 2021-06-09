@@ -23,7 +23,7 @@
                         <form action="/movies/edit/<%=movieFound.id%>">
                             <button type="submit">Editar pelicula</button>
                         </form>
-                        <form action="/movies/<%=movieFound.id%>?_method=DELETE">
+                        <form action="/movies/<%=movieFound.id%>?_method=DELETE" method="POST">
                             <button type="submit">Eliminar pelicula</button>
                         </form>
                     </div>

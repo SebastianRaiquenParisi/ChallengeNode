@@ -7,7 +7,7 @@
     <%- include('./partials/header'); %>
 
     <body>
-        <form action="/create" method="POST">
+        <form action="/movies/create" method="POST">
             <h2>Nueva pelicula</h2>
             <h4>Titulo:</h4>
             <input type="text" name="title" value="<%=locals.oldData && oldData.title %>">

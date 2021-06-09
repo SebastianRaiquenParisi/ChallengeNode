@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+       <title>Update</title>
+    </head> 
+    <%- include('./partials/header'); %>
+    <body>
+        <form action="/movies/update/<%=movieToEdit.id%>?_method=PUT" method="POST">
+            <h4>Titulo:</h4>
+            <input type="text" name="title" value="<%=movieToEdit.title%>">
+                    <% if(locals.errors && errors.title){ %>
+                        <h5><%=errors.title.msg %></h5>
+                    <% } %>
+            <h4>Rating:</h4>
+            <input type="text" name="rating" value="<%=movieToEdit.rating %>">
+                    <% if(locals.errors && errors.rating){ %>
+                        <h5><%=errors.rating.msg %></h5>
+                    <% } %>
+            <h4>Premios:</h4>
+            <input type="text" name="awards" value="<%=movieToEdit.awards %>">
+                    <% if(locals.errors && errors.awards){ %>
+                        <h5><%=errors.awards.msg %></h5>
+                    <% } %>
+            <h4>Fecha de lanzamiento:</h4>
+            <input type="date" name="release_date" value="<%=movieToEdit.release_date %>">
+                    <% if(locals.errors && errors.release_date){ %>
+                        <h5><%=errors.release_date.msg %></h5>
+                    <% } %>
+            <h4>Genero:</h4>
+            <select name="genre_id">
+                <%genres.forEach(genre =>{%>
+                <option value="<%=genre.id%>" <%=(genre.id == movieToEdit.genre_id)? "selected" : null %>><%=genre.name%></option>
+                <% }) %>
+            </select>
+                    <% if(locals.errors && errors.genre_id){ %>
+                        <h5><%=errors.genre_id.msg %></h5>
+                    <% } %>
+            <h4>Actores:</h4>
+            <select multiple name="actors_id" multiple>
+                <%actors.forEach(actor =>{%>
+                <option value="<%=actor.id%>" <%(actor.id == movieToEdit.actors.id)? "selected" : null %></option>><%=actor.first_name%> <%=actor.last_name%></option>
+                <% }) %>
+            </select>
+                    <% if(locals.errors && errors_id.actors){ %>
+                        <h5><%=errors.actors_id.msg %></h5>
+                    <% } %>
+            <button type="submit"> Crear </button>
+        </form>
+    </body>
+</html>
