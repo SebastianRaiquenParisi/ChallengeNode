@@ -20,7 +20,7 @@
                 </br>
                 <% if(locals.userLogged && userLogged.rol != 0){ %>
                     <div>
-                        <form action="/movies/edit/<%=movieFound.id%>">
+                        <form action="/movies/update/<%=movieFound.id%>">
                             <button type="submit">Editar pelicula</button>
                         </form>
                         <form action="/movies/<%=movieFound.id%>?_method=DELETE" method="POST">

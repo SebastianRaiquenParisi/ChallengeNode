@@ -22,7 +22,7 @@
                         <h5><%=errors.awards.msg %></h5>
                     <% } %>
             <h4>Fecha de lanzamiento:</h4>
-            <input type="date" name="release_date" value="<%=movieToEdit.release_date %>">
+            <input type="date" name="release_date" value="<%=dateMovie %>">
                     <% if(locals.errors && errors.release_date){ %>
                         <h5><%=errors.release_date.msg %></h5>
                     <% } %>
@@ -38,13 +38,13 @@
             <h4>Actores:</h4>
             <select multiple name="actors_id" multiple>
                 <%actors.forEach(actor =>{%>
-                <option value="<%=actor.id%>" <%(actor.id == movieToEdit.actors.id)? "selected" : null %></option>><%=actor.first_name%> <%=actor.last_name%></option>
+                <option value="<%=actor.id%>" <%(actor.id == movieToEdit.actors.id)? "selected" : null %>><%=actor.first_name%> <%=actor.last_name%></option>
                 <% }) %>
             </select>
                     <% if(locals.errors && errors_id.actors){ %>
                         <h5><%=errors.actors_id.msg %></h5>
                     <% } %>
-            <button type="submit"> Crear </button>
+            <button type="submit"> Actualizar! </button>
         </form>
     </body>
 </html>

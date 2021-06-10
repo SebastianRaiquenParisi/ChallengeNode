@@ -3,6 +3,7 @@ let Movies = db.Movie;
 let Genres = db.Genre;
 let Actors = db.Actor;
 let Actor_movies = db.Actor_movie;
+let moment = require("moment");
 const {validationResult} = require("express-validator")
 
 const movieController = {
@@ -71,7 +72,11 @@ const movieController = {
 	},
     update:async function(req,res){
         try{
-
+            let actors = await Actors.findAll();
+            let genres= await Genres.findAll();
+            let movieToEdit = await Movies.findByPk(req.params.id,{include:["genres", "actors"]})
+            let dateMovie = moment(movieToEdit.release_date).utc().format("YYYY-MM-DD");
+            return res.render("./update",{actors,genres, movieToEdit, dateMovie});
         }catch(error){
             console.log(error);
             return res.render("./error404");
@@ -79,7 +84,29 @@ const movieController = {
     },
     processUpdate:async function(req,res){
         try{
-
+            let errors = validationResult(req);				 
+            if(!errors.isEmpty()){							
+                let actors = await Actors.findAll();
+                let genres= await Genres.findAll();
+                let movieToEdit = await Movies.findByPk(req.params.id,{include:["genres", "actors"]})
+                let dateMovie = moment(movieToEdit.release_date).utc().format("YYYY-MM-DD");
+                return res.render("./update", {
+                    actors,
+                    genres,
+                    errors: errors.mapped(),
+                    dateMovie 		
+                });
+            }
+            await Movies.update({
+                ...req.body,
+                genres:req.body.genre_id,
+                actors:req.body.actors_id
+            },{
+                include: ["actors", "genres"]
+            },{
+                where:{id:req.params.id}
+            });
+            return res.redirect("/");
         }catch(error){
             console.log(error);
             return res.render("./error404");
