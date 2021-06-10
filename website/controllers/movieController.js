@@ -2,7 +2,7 @@ const db = require("../database/models");
 let Movies = db.Movie;
 let Genres = db.Genre;
 let Actors = db.Actor;
-let Actor_movies = db.Actor_movie;
+let Actor_movies = db.actor_movie;
 let moment = require("moment");
 const {validationResult} = require("express-validator")
 
@@ -46,9 +46,14 @@ const movieController = {
             }
             let newMovie = await Movies.create({
                 ...req.body
+                
             },{
-                include: ["actors", "genres"]
+                include: ["genres", "actors"]
             });
+            await Actor_movies.bulkCreate(
+				Array.from(req.body.actors_id).map(
+				(actor)=>new Object({actor_id:actor,movie_id:newMovie.id})
+				));
             return res.redirect("/"); 
         }catch (error){
             console.log(error);
