@@ -1,2 +1,2 @@
-se necesita crear manualmente la columna "deleted_at" en la tabla "movies" en mysql.
+Usuario administrador mail: root@root.com password: rootroot
 Cambiar en config donde dice "movies_db" a como se llame el schema de su db.
