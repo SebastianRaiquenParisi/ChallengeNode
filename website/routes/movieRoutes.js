@@ -10,7 +10,7 @@ router.post("/create",createUpdateFormValidator, movieController.storage);
 
 router.get("/update/:id", movieController.update);
 
-router.post("/update/:id",createUpdateFormValidator, movieController.processUpdate);
+router.put("/update/:id",createUpdateFormValidator, movieController.processUpdate);
 
 
 router.get("/:id", movieController.detail);

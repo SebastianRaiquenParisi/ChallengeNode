@@ -38,10 +38,10 @@
             <h4>Actores:</h4>
             <select multiple name="actors_id" multiple>
                 <%actors.forEach(actor =>{%>
-                <option value="<%=actor.id%>" <%(actor.id == movieToEdit.actors.id)? "selected" : null %>><%=actor.first_name%> <%=actor.last_name%></option>
+                <option value="<%=actor.id%>" <%=(actor.id == movieToEdit.actors.id)? "selected" : null %>><%=actor.first_name%> <%=actor.last_name%></option>
                 <% }) %>
             </select>
-                    <% if(locals.errors && errors_id.actors){ %>
+                    <% if(locals.errors && errors.actors_id){ %>
                         <h5><%=errors.actors_id.msg %></h5>
                     <% } %>
             <button type="submit"> Actualizar! </button>

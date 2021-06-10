@@ -44,7 +44,7 @@
                 <option value="<%=actor.id%>" ><%=actor.first_name%> <%=actor.last_name%></option>
                 <% }) %>
             </select>
-                    <% if(locals.errors && errors_id.actors){ %>
+                    <% if(locals.errors && errors.actors_id){ %>
                         <h5><%=errors.actors_id.msg %></h5>
                     <% } %>
             <button type="submit"> Crear </button>

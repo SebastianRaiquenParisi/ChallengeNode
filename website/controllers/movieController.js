@@ -45,9 +45,7 @@ const movieController = {
                 });
             }
             let newMovie = await Movies.create({
-                ...req.body,
-                genres:req.body.genre_id,
-                actors:req.body.actors_id
+                ...req.body
             },{
                 include: ["actors", "genres"]
             });
@@ -93,18 +91,16 @@ const movieController = {
                 return res.render("./update", {
                     actors,
                     genres,
+                    movieToEdit,
                     errors: errors.mapped(),
                     dateMovie 		
                 });
             }
             await Movies.update({
-                ...req.body,
-                genres:req.body.genre_id,
-                actors:req.body.actors_id
+                ...req.body
             },{
+                where:{id:req.params.id},
                 include: ["actors", "genres"]
-            },{
-                where:{id:req.params.id}
             });
             return res.redirect("/");
         }catch(error){
