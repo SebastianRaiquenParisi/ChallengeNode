@@ -107,6 +107,10 @@ const movieController = {
                 where:{id:req.params.id},
                 include: ["actors", "genres"]
             });
+            await Actor_movies.bulkCreate(
+				Array.from(req.body.actors_id).map(
+				(actor)=>new Object({actor_id:actor,movie_id:req.params.id})
+				), {updateOnDuplicate:["actor_id","movie_id"]});
             return res.redirect("/");
         }catch(error){
             console.log(error);
