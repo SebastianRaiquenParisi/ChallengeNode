@@ -107,6 +107,7 @@ const movieController = {
                 where:{id:req.params.id},
                 include: ["actors", "genres"]
             });
+            await Actor_movies.destroy({where:{movie_id:req.params.id}});
             await Actor_movies.bulkCreate(
 				Array.from(req.body.actors_id).map(
 				(actor)=>new Object({actor_id:actor,movie_id:req.params.id})
